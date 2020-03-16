@@ -14,8 +14,13 @@
 
 > DATA:
 
+<<<<<<< HEAD
 <br> [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx)
 <br> [Google Trend]()
+=======
+[StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx);\n
+[Google Trend]()
+>>>>>>> 0df9ee7650ff632cd7cade710cfebf74370fbbcd
 
 
 > MODEL:
@@ -71,7 +76,7 @@ stockx_data['trend'] = (stockx_data['yeezy'].mul(stockx_data['Adidas Yeezy']) + 
 ---
 Dataset after processing:
 [data prep with trend]
-(https://github.com/danielle707/stockx_machine_learning_analysis/blob/master/data/media/data_prep.jpg)
+(https://github.com/danielle707/stockx_machine_learning_analysis/blob/master/data/media/data_prep.png)
 
 
 
