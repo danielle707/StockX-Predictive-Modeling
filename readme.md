@@ -14,8 +14,8 @@
 
 > DATA:
 
-[StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx)
-[Google Trend]()
+<br> [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx)
+<br> [Google Trend]()
 
 
 > MODEL:
