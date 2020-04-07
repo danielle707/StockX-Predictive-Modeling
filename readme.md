@@ -117,15 +117,11 @@ Most Anomaly points lie on the right tail of distribution, and their cut-off(usi
 
   **Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
 
-![anomoly_brand](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png "Anomaly Points-Brand") ![anomaly_color](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png "Anomaly Points-Color") ![anomaly_region](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png "Anomaly Points-Region")
+![anomoly_brand](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png "Anomaly Points-Brand" width="250") ![anomaly_color](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png "Anomaly Points-Color" width="250") ![anomaly_region](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png "Anomaly Points-Region" width="250")
 
 ### Time Feature
 
-![alltime](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png)
-
-
-
-![allregion](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png) ![allstyle](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png) 
+![alltime](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png width="250")![allregion](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png width="250") ![allstyle](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png width="250") 
 
 - Time effect on Nike
 
@@ -134,8 +130,6 @@ Most Anomaly points lie on the right tail of distribution, and their cut-off(usi
 Top 3 nike brands
 
 <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="250"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="250"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="250"/> 
-
-![timeaj](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png) 
 
 - Time effect on Yeezy
 
