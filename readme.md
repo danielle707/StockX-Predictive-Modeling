@@ -42,8 +42,13 @@
   * [Time Feature](#time_feature)
   * [Color Feature](#color_feature)
   * [Region Feature](#region_feature)
-* [Usage](#usage)
-* [Roadmap](#roadmap)
+* [Modeling](#modeling)
+  - [Feature Engineering](#feature_engineering)
+  - [Model Selection](model_selection)
+  - [Result](result)
+* [Prediction Result](prediction_result)
+* [Limitation](#limitation)
+* [Improvement](improvement)
 * [Contributing](#contributing)
 * [License](#license)
 * [Contact](#contact)
@@ -66,41 +71,165 @@ Initial Data Preprosessing:
 
 ## Exploratory Data Analysis
 
-From 
+Exploring the price premium in our dataset, we found the it's heavily skew to the right, and it condensed in the range(0,3), indicating most sales achieve 4 times transaction price over its original retail one. Notably, there are huge amounts of transactions happen in range beyond 5, heading over 20 times premium. Though some of them are within the reasonable curve, and we would first conduct anomaly detection to discover those anomaly points and found out common features among those outliers.
 
-```html
-<img src="image1.png" width="425"/> <img src="image2.png" width="425"/> 
+![targetvalue](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/y_plot.png "Histogram Plot on Y") ![voilinplot](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/volinplot.png "Violin Plot on Y")
+
+### Anomaly Detection
+
+Since target value is heavily right skewed and positive, taking logrithms would have more robust result in outlier detection.
+
+- **Step 1** Train an isolation forest on target value, using decision rules to find out those outliers.
+
+~~~python
+```python
+model=IsolationForest(n_estimators=100, max_samples='auto', contamination= 0.05 ,max_features=1.0)
+model.fit(y[['Pct_change']])
+y['scores']=model.decision_function(y[['Pct_change']])
+y['anomaly']=model.predict(y[['Pct_change']])
+
+#IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0.05,
+#                max_features=1.0, max_samples='auto', n_estimators=100,
+#                n_jobs=None, random_state=None, verbose=0, warm_start=False)
 ```
-![alt-text-1](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYMAAAD4CAYAAAAO9oqkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADh0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uMy4xLjAsIGh0dHA6Ly9tYXRwbG90bGliLm9yZy+17YcXAAAQeUlEQVR4nO3dXaxcZb3H8e/PIujxJRQpLWl72BzTC/Gm4gSacHKCXpTCTTGRBC+kMSQ1BhJNvBC9qVFPohfqCYmS1EAoiYrEl0Nzgqc2DYleKHZXCVB7SHe0QG3Z3aSonJBggP+5mGcfh71nt7NfmL038/0kk1nzn2etedbKtL+uZz2zmqpCkjTa3rbcHZAkLT/DQJJkGEiSDANJEoaBJAm4YLk7sFCXXnppjY2NLXc3JGlVOXLkyAtVtW5mfdWGwdjYGOPj48vdDUlaVZI8069+3mGiJJuTPJrkWJKjST7b6l9O8uckj7fHTT3rfDHJRJKnk9zQU9/RahNJ7uqpX5nksSTHk/woyYWL211J0nwMcs3gVeDzVfUBYBtwR5Kr2nvfrqqt7fEIQHvvVuCDwA7gu0nWJFkDfAe4EbgK+ETPdr7RtrUFeBG4fYn2T5I0gPOGQVWdrqrfteWXgGPAxnOsshN4sKpeqao/ARPANe0xUVV/rKq/Aw8CO5ME+Cjw47b+PuDmhe6QJGn+5jWbKMkY8CHgsVa6M8kTSe5LsrbVNgLP9ax2stXmqr8P+EtVvTqjLkkakoHDIMm7gZ8An6uqvwH3AO8HtgKngW9ON+2zei2g3q8Pu5OMJxmfmpoatOuSpPMYKAySvJ1uEHy/qn4KUFWTVfVaVb0OfI/uMBB0/2W/uWf1TcCpc9RfAC5OcsGM+ixVtbeqOlXVWbdu1swoSdICDTKbKMC9wLGq+lZP/fKeZh8DnmrL+4Fbk1yU5EpgC/Bb4DCwpc0cupDuReb91b1t6qPAx9v6u4CHF7dbkqT5GOR3BtcBnwSeTPJ4q32J7mygrXSHdE4AnwaoqqNJHgL+QHcm0h1V9RpAkjuBA8Aa4L6qOtq29wXgwSRfA35PN3wkSUOS1fr/GXQ6nfJHZ5I0P0mOVFVnZn0k7020YcMYSWY9NmwYW+6uSdKyWLW3o1iMycln6DdhaXKy38QmSXrrG8kzA0nSGxkGkiTDQJJkGEiSMAwkSRgGkiQMA0kShoEkCcNAkoRhIEnCMJAkYRhIkjAMJEkYBjNc5K2tJY2kkbyF9dxewVtbSxpFnhlIkgwDSZJhIEnCMJAkYRhIkjAMJEkYBpIkDANJEoaBJAnDQJKEYSBJwjCQJGEYSJIwDCRJGAaSJAwDSRKGgSSJAcIgyeYkjyY5luRoks+2+iVJDiY53p7XtnqS3J1kIskTSa7u2dau1v54kl099Q8nebKtc3cS/2sxSRqiQc4MXgU+X1UfALYBdyS5CrgLOFRVW4BD7TXAjcCW9tgN3APd8AD2ANcC1wB7pgOktdnds96Oxe+aJGlQ5w2DqjpdVb9ryy8Bx4CNwE5gX2u2D7i5Le8EHqiu3wAXJ7kcuAE4WFVnq+pF4CCwo7333qr6dVUV8EDPtiRJQzCvawZJxoAPAY8B66vqNHQDA7isNdsIPNez2slWO1f9ZJ96v8/fnWQ8yfjU1NR8ui5JOoeBwyDJu4GfAJ+rqr+dq2mfWi2gPrtYtbeqOlXVWbdu3fm6LEka0EBhkOTtdIPg+1X101aebEM8tOczrX4S2Nyz+ibg1Hnqm/rUJUlDMshsogD3Aseq6ls9b+0HpmcE7QIe7qnf1mYVbQP+2oaRDgDbk6xtF463Awfaey8l2dY+67aebUmShuCCAdpcB3wSeDLJ4632JeDrwENJbgeeBW5p7z0C3ARMAC8DnwKoqrNJvgocbu2+UlVn2/JngPuBdwI/bw9J0pCkO4Fn9el0OjU+Pr6gdbsnIP32e676O4BXZlXXr7+C558/saA+SNJySHKkqjoz64OcGYhX6BcSk5P+Nk7SW4O3o5AkGQaSJMNAkoRhIEnCMJAkYRhIkjAMJEkYBpIkDANJEoaBJAnDQJKEYSBJwjCQJGEYSJIwDCRJGAaSJAwDSRKGgSQJw0CShGEgScIwkCRhGEiSMAwkSRgGkiQMA0kShoEkCcNAkoRhIEnCMJAkYRhIkjAMJEkYBpIkBgiDJPclOZPkqZ7al5P8Ocnj7XFTz3tfTDKR5OkkN/TUd7TaRJK7eupXJnksyfEkP0py4VLuoCTp/AY5M7gf2NGn/u2q2toejwAkuQq4FfhgW+e7SdYkWQN8B7gRuAr4RGsL8I22rS3Ai8Dti9khSdL8nTcMquqXwNkBt7cTeLCqXqmqPwETwDXtMVFVf6yqvwMPAjuTBPgo8OO2/j7g5nnugyRpkRZzzeDOJE+0YaS1rbYReK6nzclWm6v+PuAvVfXqjHpfSXYnGU8yPjU1tYiuS5J6LTQM7gHeD2wFTgPfbPX0aVsLqPdVVXurqlNVnXXr1s2vx5KkOV2wkJWqanJ6Ocn3gP9qL08Cm3uabgJOteV+9ReAi5Nc0M4OettLkoZkQWcGSS7vefkxYHqm0X7g1iQXJbkS2AL8FjgMbGkzhy6ke5F5f1UV8Cjw8bb+LuDhhfRJkrRw5z0zSPJD4Hrg0iQngT3A9Um20h3SOQF8GqCqjiZ5CPgD8CpwR1W91rZzJ3AAWAPcV1VH20d8AXgwydeA3wP3LtneSZIGku4/zlefTqdT4+PjC1q3O4mp337Pv75aj5+k0ZTkSFV1Ztb9BbIkyTCQJBkGkiQMA0kShoEkCcNAkoRhIEnCMJAkYRhIkjAMJEkYBpIkDANJEoaBJAnDQJKEYSBJwjCQJGEYSJIwDCRJGAaSJAwDSRKGgSQJw0CShGEgScIwkCRhGEiSMAwkSRgGkiQMA0kShoEkCcNAkoRhIEnCMJAkYRhIkjAMJEkMEAZJ7ktyJslTPbVLkhxMcrw9r231JLk7yUSSJ5Jc3bPOrtb+eJJdPfUPJ3myrXN3kiz1TkqSzm2QM4P7gR0zancBh6pqC3CovQa4EdjSHruBe6AbHsAe4FrgGmDPdIC0Nrt71pv5WZKkN9l5w6CqfgmcnVHeCexry/uAm3vqD1TXb4CLk1wO3AAcrKqzVfUicBDY0d57b1X9uqoKeKBnW5KkIVnoNYP1VXUaoD1f1uobged62p1stXPVT/ap95Vkd5LxJONTU1ML7LokaaalvoDcb7y/FlDvq6r2VlWnqjrr1q1bYBclSTMtNAwm2xAP7flMq58ENve02wScOk99U5+6JGmIFhoG+4HpGUG7gId76re1WUXbgL+2YaQDwPYka9uF4+3AgfbeS0m2tVlEt/VsS5I0JBecr0GSHwLXA5cmOUl3VtDXgYeS3A48C9zSmj8C3ARMAC8DnwKoqrNJvgocbu2+UlXTF6U/Q3fG0juBn7eHJGmI0p3Es/p0Op0aHx9f0Lrdk5B++z3/+mo9fpJGU5IjVdWZWfcXyJIkw0CSZBhIkjAMJEkYBpIkDANJEoaBJAnDQJKEYSBJwjCQJGEYSJIwDCRJGAaSJAwDSRKGgSQJw0CShGEgScIwkCRhGEiSMAwW6SKSzHps2DC23B2TpHm5YLk7sLq9AtSs6uRkht8VSVoEzwwkSYaBJMkwkCRhGEiSMAwkSRgGkiQMA0kShoEkCcNAkoRhIEnCMJAkYRhIklhkGCQ5keTJJI8nGW+1S5IcTHK8Pa9t9SS5O8lEkieSXN2znV2t/fEkuxa3S5Kk+VqKM4OPVNXWquq013cBh6pqC3CovQa4EdjSHruBe6AbHsAe4FrgGmDPdIBIkobjzRgm2gnsa8v7gJt76g9U12+Ai5NcDtwAHKyqs1X1InAQ2PEm9EuSNIfFhkEBv0hyJMnuVltfVacB2vNlrb4ReK5n3ZOtNld9liS7k4wnGZ+amlpk1yVJ0xb7n9tcV1WnklwGHEzyP+do2+9/fKlz1GcXq/YCewE6nU7fNpKk+VvUmUFVnWrPZ4Cf0R3zn2zDP7TnM635SWBzz+qbgFPnqEuShmTBYZDkXUneM70MbAeeAvYD0zOCdgEPt+X9wG1tVtE24K9tGOkAsD3J2nbheHurSZKGZDHDROuBnyWZ3s4Pquq/kxwGHkpyO/AscEtr/whwEzABvAx8CqCqzib5KnC4tftKVZ1dRL8kSfOUqtU59N7pdGp8fHxB63YDrN9+L119Psd1w4YxJief6fve+vVX8PzzJwbeliSdS5IjPT8F+H+LvYCsJdANgv7hMTnZ7/q6JC0tb0chSTIMJEmGgSQJw+BNchFJZj02bBhb5m1JUn9eQH5TvEK/C8ILuxi8lNuSpP48M5AkGQarl8NHkpaOw0SrlsNHkpaOYTBUF7VfP0vSymIYDFX/f833v4u3JA2P1wwkSYaBJMkwkCRhGEiSMAwkSRgGb0H+GE3S/Dm19C3HH6NJmj/PDCRJhoEkyTCQJGEYSJIwDCRJGAaSJAyDEeLvDyTNzd8ZjAx/fyBpbp4ZSJIMA0mSYSBJwjCQJGEYyFlGknA2kZxlJAnPDDQnzxikUeKZgebgGYM0SlbMmUGSHUmeTjKR5K7l7o/m0v+MYc2ad3kmIa1iKyIMkqwBvgPcCFwFfCLJVcvbK/U3fcbwxsfrr7/ctz45+fy8QmLDhrF5h8pC1pH0RitlmOgaYKKq/giQ5EFgJ/CHZe2VlsBcw03vIJlryGm+7ee3ztve9k8tvFZGff36K3j++ROz6tIwrZQw2Ag81/P6JHDtzEZJdgO728v/TfL0wj8yAJcCL/Spz9V+GerL+dlvqPccq6Xct6VoP791+v2FvIT1S19//eUX+r0x13YmJ585T9C9JfX5s6c5LPWxuqJfcaWEQb8/CbP+qVdVe4G9S/ahyXhVdZZqe29lHqvBeJwG43Ea3LCO1Yq4ZkD3TGBzz+tNwKll6oskjZyVEgaHgS1JrkxyIXArsH+Z+yRJI2NFDBNV1atJ7gQOAGuA+6rq6BA+esmGnEaAx2owHqfBeJwGN5RjlarZszAkSaNlpQwTSZKWkWEgSRrdMPD2F4NJciLJk0keTzK+3P1ZSZLcl+RMkqd6apckOZjkeHteu5x9XAnmOE5fTvLn9r16PMlNy9nHlSDJ5iSPJjmW5GiSz7b6UL5TIxkG3v5i3j5SVVudFz7L/cCOGbW7gENVtQU41F6PuvuZfZwAvt2+V1ur6pEh92klehX4fFV9ANgG3NH+XhrKd2okw4Ce219U1d+B6dtfSAOrql8CZ2eUdwL72vI+4OahdmoFmuM4aYaqOl1Vv2vLLwHH6N6dYSjfqVENg363v9i4TH1Z6Qr4RZIj7XYgOrf1VXUaun+4gcuWuT8r2Z1JnmjDSCM/nNYryRjwIeAxhvSdGtUwGOj2FwLguqq6mu6Q2h1J/m25O6S3hHuA9wNbgdPAN5e3OytHkncDPwE+V1V/G9bnjmoYePuLAVXVqfZ8BvgZ3SE2zW0yyeUA7fnMMvdnRaqqyap6rapeB76H3ysAkrydbhB8v6p+2spD+U6Nahh4+4sBJHlXkvdMLwPbgafOvdbI2w/sasu7gIeXsS8r1vRfbs3H8HtFureuvRc4VlXf6nlrKN+pkf0FcpvK9h/84/YX/77MXVpxkvwL3bMB6N665Acep39I8kPgerq3GJ4E9gD/CTwE/DPwLHBLVY30xdM5jtP1dIeICjgBfHp6XHxUJflX4FfAk8DrrfwlutcN3vTv1MiGgSTpH0Z1mEiS1MMwkCQZBpIkw0CShGEgScIwkCRhGEiSgP8DDqrtk7P4MrIAAAAASUVORK5CYII=%0A "title-1") ![alt-text-2](image2.png "title-2")
+~~~
+
+- **Step 2** Create anomaly lists and compare it to non-anomaly points
+
+| Metric | whole | normal | Anamoly |
+| :----: | :---: | :----: | :-----: |
+|  Mean  | 1.25  |  1.03  |  5.40   |
+| Median | 0.70  |  0.68  |  5.00   |
+
+![anomalycomp](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/anomalycomp.png)
+
+Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
+
+- **Step 3** Explore anomaly points
+
+  Group anomaly points on their three features: brand, color and region, we could peek into what features are heavily weighted in our dataset.
+
+  **Brand** Air Jordan contributes highest number of price premium among other brands, the anomaly amount has been more than twice larger than the second highest. The top 3 brands, i.e. Air Jordan, Presto, Blazer are all Nike and following these three are the Yeezy brand.
+
+  **Color** White color is the dominating color feature. There are two hypothesis on why the number is high: 
+
+  1. Most sneakers are white; 2. White is indeed a significant feature. To test our hypothesis, we will further find out which specific sneakers contribute. 
+
+  **Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
+
+![anomoly_brand](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png "Anomaly Points-Brand") ![anomaly_color](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png "Anomaly Points-Color") ![anomaly_region](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png "Anomaly Points-Region")
+
+### Time Feature
+
+![alltime](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png)
 
 
 
+![allregion](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png) ![allstyle](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png) 
+
+- Time effect on Nike
+
+![allnike](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allnike.png)
+
+Top 3 nike brands
 
 
 
+![timeaj](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png) 
+
+- Time effect on Yeezy
+
+![timeyeezy](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeyeezy.png)
+
+Statistically, the best time to resell is 3 to 5 weeks before the release date 0. The worst time to resell is the first 9 weeks after release, when the market is saturated. After that, as the availability in market declines, buyers are willing to pay higher premiums. 
+
+### Color Feature
+
+Our dataset consists of two major brands – yeezy and nike off-white. In terms of yeezy, we can see that basic colors including black, white, and grey have constant growth. Bolder colors like orange would start high but decline as time passes. In terms of off-shite, red is the most popular color.
+
+### Region Feature
+
+Looking at the number of sales, California ranks the first and Oregon ranks the third. However, when we look at the percentage of population that purchases from StockX, Oregon comes to the top with nearly 2 transactions per 1000 people. This means that StockX might want to make more promotions in Oregon, but keep in mind that as a reseller, we cannot control the sales region.
+
+![edaregion](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/edaregion.png)
+
+## Modeling 
+
+### Feature Engineering
+
+To recapture the features in our datasets, the target variable is the price premium, calculated as the percentage change of sale price over retail price, and input features are days since release, brand, region, colorway and number of sales, adding up to 31 variables.
+
+### Model Selection
+
+In our project, we’ve tried 2 types of machine learning models, linear and tree-based regression ones. Due to different implementation and library on these algorithms, we've consolidate our model 
+
+1. the same data train-test split and 5-fold validation fold (same random seed)
+2. the same implemtation package GridSearchCV
+3. using r2 as our evaluation metric
+
+- **Linear Model - Lasso**
+
+  We see from the Exploratory Data Analysis step, some brands or some colors (e.x. white) have over emphasizing power. In consideration of outliers and overfitting issues, we utilize Lasso model  to ensure regularization.
+
+  ```python
+  lasso = Lasso()
+  parameters = {'alpha': [1e-5,1e-4,1e-3,1e-2,1e-1,1e0,1e1,1e2,1e3,1e4,1e5]}
+  r2 = make_scorer(r2_score, greater_is_better=True)
+  clf = GridSearchCV(lasso, 
+                     parameters, 
+                     cv=5,
+                     scoring=r2)
+  ```
+
+- **Linear Model - SVM **
+
+  ```python
+  x.train = preprocessing.scale(x_train)
+  linearsvr = LinearSVR(tol=0.01)
+  parameters = {'C': [0.01, 0.1, 1, 10, 100]} 
+  r2 = make_scorer(r2_score, greater_is_better=True)
+  clf = GridSearchCV(linearsvr, 
+                     parameters, 
+                     cv=5, 
+                     scoring=r2)
+  ```
 
 
 
+- **Tree-based - XGBoost**
+
+  ```
+  params = {'colsample_bytree': [i/10. for i in range(8,11)],
+            'subsample': [i/10. for i in range(8,11)],
+            'eta': [.3, .4, .5],
+            'max_depth': list(range(3,6)),
+            'min_child_weight': list(range(4,7)),
+            'eval_metric': ['rmse'],
+            'objective': ['reg:squarederror']}
+  xg_reg = xgb.XGBRegressor()
+  r2 = make_scorer(r2_score, greater_is_better=True)
+  clf = GridSearchCV(xg_reg, 
+                     params, 
+                     cv=5, 
+                     scoring=r2)
+  ```
+
+  
 
 
 
+## Prediction Result
 
 
 
+## Limitation
 
+**1. Brand Generalisation** The data we utilized only cover sales from 2017 to 2019. Due to the changing tendency of the shoe market, this model’s accuracy and predictability for future price premium might be less stable.(added) 
 
+**2. Timing Data Limitation** More other brands’ data and recent sales data could improve the generalization and future predictability of this model. Furthermore, More features data, such as the material or color purity of shoes, could be used to improve our model.
 
+## Improvement
 
-
-
-
-
-
-
-
-
-
-
-
-
+1. Time Series consideration, 
+2. DNN Model
 
