@@ -36,15 +36,15 @@
 ## Table of Contents
 
 * [Motivation](#motivation)
-* [Data Source](#data_source)
-* [Exploratory Data Analysis](#exploratory_data_analysis)
-  * [Anomaly Dectection](#anomaly_detection)
-  * [Time Feature](#time_feature)
-  * [Color Feature](#color_feature)
-  * [Region Feature](#region_feature)
+* [Data Source](#data-source)
+* [Exploratory Data Analysis](#exploratory-data-analysis)
+  * [Anomaly Dectection](#anomaly-detection)
+  * [Time Feature](#time-feature)
+  * [Color Feature](#color-feature)
+  * [Region Feature](#region-feature)
 * [Modeling](#modeling)
-  - [Feature Engineering](#feature_engineering)
-  - [Model Selection](model_selection)
+  - [Feature Engineering](#feature-engineering)
+  - [Model Selection](model-selection)
   - [Result](result)
 * [Prediction Result](prediction_result)
 * [Limitation](#limitation)
@@ -133,9 +133,9 @@ Most Anomaly points lie on the right tail of distribution, and their cut-off(usi
 
 Top 3 nike brands
 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="250"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="250"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="250"/> 
 
-
-![timeaj](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png) 
+![timeaj](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png) ![timepresto](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png) 
 
 - Time effect on Yeezy
 
@@ -198,7 +198,7 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
 
 - **Tree-based - XGBoost**
 
-  ```
+  ```python
   params = {'colsample_bytree': [i/10. for i in range(8,11)],
             'subsample': [i/10. for i in range(8,11)],
             'eta': [.3, .4, .5],
