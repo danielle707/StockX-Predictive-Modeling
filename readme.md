@@ -1,33 +1,35 @@
-
-
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/zhidanwang/][![Jekyll](https://img.shields.io/badge/built%20for-Jekyll-red.svg)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
-
-# StockX Price Premium Preditive Analysis
+<h1 align="center">
+  <br>
+  <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/banner.png" length = "3000" alt="StockX Project">
+  <br>
+  StockX Price Premium Preditive Analysis
+  <br>
+</h1>
 
 > **This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands**
 
-![banner](/Users/wangzhidan/Desktop/stockx_machine_learning_analysis/data/media/banner.png)
-
-- **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
-- **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx);
-- **MODEL**: Tree-based and Linear Regression
-
-|  Tree-based   | Linear             |
-| :-----------: | ------------------ |
-| Random Forest | Lasso              |
-|    XGboost    | SVM(Linear Kernel) |
+​                                                        [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)[![Jekyll](https://img.shields.io/badge/built%20for-Jekyll-red.svg)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
 
 - **RESULT:** We have utilized our strategy and identified undervalued shoes through March 2020, and these shoes have increased their price within 80% of our prediction by the end of March 2020.
 
   *Out-of-Sample Results:*
 
-| Sneaker Name                                            | Image                                                        | Retail | Most Recent Sale | Current Premium | Predicted Premium |
-| ------------------------------------------------------- | ------------------------------------------------------------ | ------ | ---------------- | --------------- | ----------------- |
-| **Air Jordan** 1 Retro High Travis Scott(**Tan/Brown**) | <img src="https://stockx-360.imgix.net/Air-Jordan-1-Retro-High-Travis-Scott/Images/Air-Jordan-1-Retro-High-Travis-Scott/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1550180948" width="200"/> | $175   | $797 - $1486     | 497.4%          | **802.0%**        |
-| **Blazer** Mid 77 Vintage Slam Jam(**White**)           | <img src="https://stockx-360.imgix.net/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Images/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1554253378" width="200"/> | $100   | $470 - $486      | 381.0%          | **455.5%**        |
-| **Yeezy** Boost 350 V2 Tail Light(**Grey, Orange**)     | <img src="https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Tail-Light/Images/adidas-Yeezy-Boost-350-V2-Tail-Light/Lv2/img36.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1584757351" width="200"/> | $220   | $289 - $336      | 31.8%           | **82.0%**         |
+|                      Sneaker Name                       |                            Image                             | Retail | Most Recent Sale | Current Premium | Predicted Premium |
+| :-----------------------------------------------------: | :----------------------------------------------------------: | :----: | :--------------: | :-------------: | :---------------: |
+| **Air Jordan** 1 Retro High Travis Scott(**Tan/Brown**) | <img src="https://stockx-360.imgix.net/Air-Jordan-1-Retro-High-Travis-Scott/Images/Air-Jordan-1-Retro-High-Travis-Scott/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1550180948" width="200"/> |  $175  |   $797 - $1486   |     497.4%      |    **802.0%**     |
+|      **Blazer** Mid 77 Vintage Slam Jam(**White**)      | <img src="https://stockx-360.imgix.net/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Images/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1554253378" width="200"/> |  $100  |   $470 - $486    |     381.0%      |    **455.5%**     |
+|   **Yeezy** Boost 350 V2 Tail Light(**Grey, Orange**)   | <img src="https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Tail-Light/Images/adidas-Yeezy-Boost-350-V2-Tail-Light/Lv2/img36.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1584757351" width="200"/> |  $220  |   $289 - $336    |      31.8%      |     **82.0%**     |
 
  																										(*The price data below is based on March 2020)
+
+- **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
+- **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx);
+- **MODEL**: Tree-based and Linear Regression
+
+|  Tree-based   |       Linear       |
+| :-----------: | :----------------: |
+| Random Forest |       Lasso        |
+|    XGboost    | SVM(Linear Kernel) |
 
 ## Table of Contents
 
@@ -90,12 +92,14 @@ y['anomaly']=model.predict(y[['Pct_change']])
 
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
+<img align="left" src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/anomalycomp.png"> 
+
 | Metric | whole | normal | Anamoly |
 | :----: | :---: | :----: | :-----: |
 |  Mean  | 1.25  |  1.03  |  5.40   |
 | Median | 0.70  |  0.68  |  5.00   |
 
-![anomalycomp](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/anomalycomp.png)
+
 
 Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
@@ -111,11 +115,11 @@ Group anomaly points on their three features: brand, color and region, we could 
 
 **Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png" width="270"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png" width="300"/> 
 
 ### Time Feature
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="270"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="300"/> 
 
 - **Time effect on Nike**
 
@@ -123,7 +127,7 @@ Group anomaly points on their three features: brand, color and region, we could 
 
 - **Top 3 nike brands**
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="270"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="300"/> 
 
 - **Time effect on Yeezy**
 
