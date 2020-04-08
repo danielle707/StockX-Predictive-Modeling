@@ -1,20 +1,16 @@
-![StockX](https://www.bleepstatic.com/content/hl-images/2019/08/01/stockx-header-2.jpg)
+
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org) [![LinkedIn][linkedin-shield]][https://www.linkedin.com/in/zhidanwang/][![Jekyll](https://img.shields.io/badge/built%20for-Jekyll-red.svg)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
 
 # StockX Price Premium Preditive Analysis
 
-> This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
+> **This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands**
 
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+![banner](/Users/wangzhidan/Desktop/stockx_machine_learning_analysis/data/media/banner.png)
 
 - **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
-
-- **DATA**:
-
-  ​	[StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx);
-
-     
-
-- **MODEL**:
+- **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx);
+- **MODEL**: Tree-based and Linear Regression
 
 |  Tree-based   | Linear             |
 | :-----------: | ------------------ |
@@ -82,7 +78,6 @@ Since target value is heavily right skewed and positive, taking logrithms would 
 - **Step 1** Train an isolation forest on target value, using decision rules to find out those outliers.
 
 ~~~python
-```python
 model=IsolationForest(n_estimators=100, max_samples='auto', contamination= 0.05 ,max_features=1.0)
 model.fit(y[['Pct_change']])
 y['scores']=model.decision_function(y[['Pct_change']])
@@ -91,7 +86,6 @@ y['anomaly']=model.predict(y[['Pct_change']])
 #IsolationForest(behaviour='deprecated', bootstrap=False, contamination=0.05,
 #                max_features=1.0, max_samples='auto', n_estimators=100,
 #                n_jobs=None, random_state=None, verbose=0, warm_start=False)
-```
 ~~~
 
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
@@ -105,33 +99,33 @@ y['anomaly']=model.predict(y[['Pct_change']])
 
 Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
+Group anomaly points on their three features: brand, color and region, we could peek into what features are heavily weighted in our dataset.
+
 - **Step 3** Explore anomaly points
 
-  Group anomaly points on their three features: brand, color and region, we could peek into what features are heavily weighted in our dataset.
+**Brand** Air Jordan contributes highest number of price premium among other brands, the anomaly amount has been more than twice larger than the second highest. The top 3 brands, i.e. Air Jordan, Presto, Blazer are all Nike and following these three are the Yeezy brand.
 
-  **Brand** Air Jordan contributes highest number of price premium among other brands, the anomaly amount has been more than twice larger than the second highest. The top 3 brands, i.e. Air Jordan, Presto, Blazer are all Nike and following these three are the Yeezy brand.
+**Color** White color is the dominating color feature. There are two hypothesis on why the number is high: 
 
-  **Color** White color is the dominating color feature. There are two hypothesis on why the number is high: 
+1. Most sneakers are white; 2. White is indeed a significant feature. To test our hypothesis, we will further find out which specific sneakers contribute. 
 
-  1. Most sneakers are white; 2. White is indeed a significant feature. To test our hypothesis, we will further find out which specific sneakers contribute. 
+**Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
 
-  **Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
-
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png" width="260"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png" width="260"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png" width="260"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png" width="270"/> 
 
 ### Time Feature
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="260"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="260"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="260"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="270"/> 
 
-- Time effect on Nike
+- **Time effect on Nike**
 
 ![allnike](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allnike.png)
 
-- Top 3 nike brands
+- **Top 3 nike brands**
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="260"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="260"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="260"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="270"/> 
 
-- Time effect on Yeezy
+- **Time effect on Yeezy**
 
 ![timeyeezy](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeyeezy.png)
 
@@ -161,7 +155,7 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
 2. the same implemtation package GridSearchCV
 3. using r2 as our evaluation metric
 
-- **Linear Model - Lasso**
+- **Linear Model**
 
   We see from the Exploratory Data Analysis step, some brands or some colors (e.x. white) have over emphasizing power. In consideration of outliers and overfitting issues, we utilize Lasso model  to ensure regularization.
 
@@ -175,7 +169,7 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
                      scoring=r2)
   ```
 
-- **Linear Model - SVM **
+- **Linear Model - SVM**
 
   ```python
   x.train = preprocessing.scale(x_train)
