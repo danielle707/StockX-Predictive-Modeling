@@ -1,14 +1,26 @@
-<h1 align="center">
-  <br>
-  <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/banner.png" length = "3000" alt="StockX Project">
-  <br>
-  StockX Price Premium Preditive Analysis
-  <br>
+<h1 align="center">StockX Price Premium Preditive Analysis
 </h1>
 
-> **This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands**
+![banner](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/banner.png)
+
+<h4 align="center">Use Machine Learning to learn undervalued sneakers.</h4>
 
 ​                                                        [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)[![Jekyll](https://img.shields.io/badge/built%20for-Jekyll-red.svg)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)](https://pypi.python.org/pypi/yt2mp3/)
+
+
+
+## PROJECT OVERVIEW
+
+- **MOTIVT: This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
+
+- **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
+- **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx); Demographic Data 2020
+- **MODEL**: Tree-based and Linear Regression
+
+|  Tree-based   |       Linear       |
+| :-----------: | :----------------: |
+| Random Forest |       Lasso        |
+|    XGboost    | SVM(Linear Kernel) |
 
 - **RESULT:** We have utilized our strategy and identified undervalued shoes through March 2020, and these shoes have increased their price within 80% of our prediction by the end of March 2020.
 
@@ -21,15 +33,6 @@
 |   **Yeezy** Boost 350 V2 Tail Light(**Grey, Orange**)   | <img src="https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Tail-Light/Images/adidas-Yeezy-Boost-350-V2-Tail-Light/Lv2/img36.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1584757351" width="200"/> |  $220  |   $289 - $336    |      31.8%      |     **82.0%**     |
 
  																										(*The price data below is based on March 2020)
-
-- **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
-- **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx);
-- **MODEL**: Tree-based and Linear Regression
-
-|  Tree-based   |       Linear       |
-| :-----------: | :----------------: |
-| Random Forest |       Lasso        |
-|    XGboost    | SVM(Linear Kernel) |
 
 ## Table of Contents
 
@@ -47,10 +50,7 @@
 * [Prediction Result](prediction_result)
 * [Limitation](#limitation)
 * [Improvement](improvement)
-* [Contributing](#contributing)
-* [License](#license)
-* [Contact](#contact)
-* [Acknowledgements](#acknowledgements)
+* [Contributer](#contributer)
 
 ## Motivation
 
@@ -119,7 +119,7 @@ Group anomaly points on their three features: brand, color and region, we could 
 
 ### Time Feature
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="300"/> 
+<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="280"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="350"/> 
 
 - **Time effect on Nike**
 
@@ -224,4 +224,6 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
 
 1. Time Series consideration, 
 2. DNN Model
+
+## Contributer
 
