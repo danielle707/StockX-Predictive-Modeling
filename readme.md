@@ -1,7 +1,7 @@
 <h1 align="center">StockX Price Premium Preditive Analysis
 </h1>
 
-![banner](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/banner.png)
+![banner](data/media/banner.png)
 
 <h4 align="center">Use Machine Learning to learn undervalued sneakers.</h4>
 
@@ -11,7 +11,7 @@
 
 ## PROJECT OVERVIEW
 
-- **MOTIVT: This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
+- **ABSTRACT**: This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
 
 - **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
 - **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx); Demographic Data 2020
@@ -65,7 +65,7 @@ We utilized public data offered through the [StockX Data Contest](https://stockx
 To expand upon the features, we also manually obtained the colorway and number of sales from the StockX website. We then converted style and color into dummy variables, and sneaker size into frequency encoding as common shoe sizes are sold at higher premium. For modeling purposes, our target variable is price premium, which equals price markup over retail price, and our input variables are days since release, style, colorway, size, and number of sales.
 Initial Data Preprosessing:
 
-![data_source](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/data_source.png)
+![data_source](data/media/data_source.png)
 
 ## Exploratory Data Analysis
 
@@ -92,7 +92,7 @@ y['anomaly']=model.predict(y[['Pct_change']])
 
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
-<img align="left" src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/anomalycomp.png"> 
+<img align="left" src="data/media/anomalycomp.png"> 
 
 | Metric | whole | normal | Anamoly |
 | :----: | :---: | :----: | :-----: |
@@ -115,23 +115,23 @@ Group anomaly points on their three features: brand, color and region, we could 
 
 **Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_brand.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_color.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/ano_region.png" width="300"/> 
+<img src="data/media/ano_brand.png" width="300"/> <img src="data/media/ano_color.png" width="300"/> <img src="data/media/ano_region.png" width="300"/> 
 
 ### Time Feature
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/alltime.png" width="270"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allregion.png" width="280"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allstyle.png" width="350"/> 
+<img src="data/media/alltime.png" width="270"/> <img src="data/media/allregion.png" width="280"/> <img src="data/media/allstyle.png" width="350"/> 
 
 - **Time effect on Nike**
 
-![allnike](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/allnike.png)
+![allnike](data/media/allnike.png)
 
 - **Top 3 nike brands**
 
-<img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeaj.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timepresto.png" width="300"/> <img src="https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timezoom.png" width="300"/> 
+<img src="data/media/timeaj.png" width="300"/> <img src="data/media/timepresto.png" width="300"/> <img src="data/media/timezoom.png" width="300"/> 
 
 - **Time effect on Yeezy**
 
-![timeyeezy](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/timeyeezy.png)
+![timeyeezy](data/media/timeyeezy.png)
 
 Statistically, the best time to resell is 3 to 5 weeks before the release date 0. The worst time to resell is the first 9 weeks after release, when the market is saturated. After that, as the availability in market declines, buyers are willing to pay higher premiums. 
 
@@ -143,7 +143,7 @@ Our dataset consists of two major brands – yeezy and nike off-white. In terms 
 
 Looking at the number of sales, California ranks the first and Oregon ranks the third. However, when we look at the percentage of population that purchases from StockX, Oregon comes to the top with nearly 2 transactions per 1000 people. This means that StockX might want to make more promotions in Oregon, but keep in mind that as a reseller, we cannot control the sales region.
 
-![edaregion](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/edaregion.png)
+![edaregion](data/media/edaregion.png)
 
 ## Modeling 
 
@@ -159,9 +159,12 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
 2. the same implemtation package GridSearchCV
 3. using r2 as our evaluation metric
 
-- **Linear Model**
+- **Linear Model - Lasso**
 
   We see from the Exploratory Data Analysis step, some brands or some colors (e.x. white) have over emphasizing power. In consideration of outliers and overfitting issues, we utilize Lasso model  to ensure regularization.
+  $$
+  \sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{i}\right)^{2} + \lambda \quad \times \sum_{i}^{p}\left|\beta_{j}\right|
+  $$
 
   ```python
   lasso = Lasso()
@@ -172,6 +175,14 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
                      cv=5,
                      scoring=r2)
   ```
+
+  To choose the optimal penalizing parameter, we used cross validation, and the optimal shrinkage coefficient is $10^{-6}$
+
+  ![featureSig](data/media/featureSig.png)
+
+
+
+The coefficients from Lasso are as above. On the left hand side, From the perspective of brand, compared to yeezy, air force, airmac, zoom, and react, Air Jordan indicates an estimated 324% price premium. On the right hand side, from the perspective of color, compared to other color, color blue will reduce/damage the price premium by 253%.Furthermore, as the number of sales increase, the price premium will goes down. This could be explained by the value of scarcity.From this result, we could learn that a brown color shoes has more investing value than a blue shoes. Similarly, reseller should buy Air-Jordan instead of yeezy as early as possible in order to have higher price premium in the future. 
 
 - **Linear Model - SVM**
 
@@ -206,13 +217,35 @@ In our project, we’ve tried 2 types of machine learning models, linear and tre
                      scoring=r2)
   ```
 
+  <img src="data/media/xgboost_featureSig.png" width="400"/>
   
+  <img src = "data/media/xgboost_tree.png" width = "580"/>
+
+
+
+
+
+#### Model Summary
+
+|                   Model                    |                  r2 score                  | MSE                                      | Features                                                     |
+| :----------------------------------------: | :----------------------------------------: | ---------------------------------------- | ------------------------------------------------------------ |
+| <span style="color:blue">**Lasso** </span> | <span style="color:blue">**0.7810**</span> | <span style="color:blue">**0.51**</span> | <span style="color:blue">**`Days_Since_Release`:(+); `yeezy`: (-) `airjordan` :(+)**</span> |
+|                    SVM                     |                   0.7508                   | 0.39                                     | /                                                            |
+|                  XGBoost                   |                   0.9671                   | 0.04                                     | `Days_Since_Release`; `size_freq`; `Number_of_Sales`         |
 
 
 
 ## Prediction Result
 
+Lasso is the winner in the model selection part
 
+According to our prediction model, we already know that sneakers of certain styles, especially Airjordan1 or blazer, and of certain colors, especially red, tan, or orange, are the most investable. Based on this knowledge, we tried to find some undervalued sneakers to see if we can invest on them and make a profit. Here are some proposed candidates that were released fairly recently. Air Jordan 1 by Travis Scott: Well, if you are a sneakerhead, you should already know this one is hot. The question is, is there more room for its price to go up, given that current sale price has been as high as almost 5 times the original retail price. The answer is Yes! Based on our model, the price premium should have been 800%, while it is only 500% as of now. So there is an arbitrage opportunity to cop this pair now and sell higher later. The other candidates would follow similarly.
+
+|               Sneaker(predicted on 03/26/2020)               | Feature                                                      |                            Image                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------- | :----------------------------------------------------------: |
+| [Air Jordan 1 Retro High Travis Scott](https://stockx.com/air-jordan-1-retro-high-travis-scott) | <font size="2"> **Feature:** air-jordan(3.24)<br/> Tan/Brown(1.83) <br/>**Current Price Premium: 497.4%** <br/>**Predicted Price Premium: 802.0%**</font> | <img src="https://stockx-360.imgix.net/Air-Jordan-1-Retro-High-Travis-Scott/Images/Air-Jordan-1-Retro-High-Travis-Scott/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1550180948" width="200"/> |
+| [Blazer Mid 77 Vintage Slam Jam](https://stockx.com/nike-blazer-mid-77-vintage-white-black) | <font size = "2">**Features: **blazer(0.58), White(0.71)<br>**Current Price Premium: 381.0%**<br>**Predicted Price Premium: 455.5%**</font> | <img src="https://stockx-360.imgix.net/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Images/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1554253378" width="200"/> |
+| [Yeezy Boost 350 V2 Tail Light](https://stockx.com/adidas-yeezy-boost-350-v2-tail-light) | <font size = "2">**Features:** blazer(0.58), White(0.71)<br>**Current Price Premium: 381.0%**<br>**Predicted Price Premium: 455.5%**</font> | <img src="https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Tail-Light/Images/adidas-Yeezy-Boost-350-V2-Tail-Light/Lv2/img36.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1584757351" width="200"/> |
 
 ## Limitation
 
