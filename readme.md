@@ -78,7 +78,7 @@ Looking at price premium, we could easily observe that it is heavily skewed to t
 
 Since the target variable is non-negative and heavily right skewed, we would take the logrithm to have more robust results in outlier detection.
 
-- **Step 1** Train an isolation forest on target value, using decision rules to find out those outliers.
+- **Step 1** Train an isolation forest on target value and use decision rules to find outliers.
 
 ~~~python
 model=IsolationForest(n_estimators=100, max_samples='auto', contamination= 0.05 ,max_features=1.0)
@@ -100,19 +100,20 @@ y['anomaly']=model.predict(y[['Pct_change']])
 |  Mean  | 1.25  |  1.03  |  5.40   |
 | Median | 0.70  |  0.68  |  5.00   |
 
-Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
-
-Group anomaly points on their three features: brand, color and region, we could peek into what features are heavily weighted in our dataset.
+Most anomaly points lie on the right tail of the distribution, and their cut-off (using median statistics) is approximately exp(5). This indicates that our data becomes noiser at higher price premiums. As such, we would next group these anomly points by brand, by color, and by region to get some further insights of our dataset.
 
 - **Step 3** Explore anomaly points
 
-**Brand** Air Jordan contributes highest number of price premium among other brands, the anomaly amount has been more than twice larger than the second highest. The top 3 brands, i.e. Air Jordan, Presto, Blazer are all Nike and following these three are the Yeezy brand.
+**Style** The top three styles that saw extreme resale prices are Air Jordan, Presto, and Blazer. Note that these are all nike sneakers. Among the top three, Air Jordan saw the highest price premium of over 2000%. Yeezy sneakers is at the fourth place.
 
-**Color** White color is the dominating color feature. There are two hypothesis on why the number is high: 
+**Color** White is the dominating color feature. There are two hypothesis on why its resale prices are high: 
 
-1. Most sneakers are white; 2. White is indeed a significant feature. To test our hypothesis, we will further find out which specific sneakers contribute. 
+1. Most sneakers are white; 
+2. White is indeed a significant feature. 
 
-**Region** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
+To test our hypothesis, we will further examine which specific sneakers contributed the most. 
+
+**Region** California and New York overall saw the highest price premium. However, this doesn't mean these two states have the highest per capita premium. Stay around for further analysis in per capital level.
 
 <img src="data/media/ano_brand.png" width="300"/> <img src="data/media/ano_color.png" width="300"/> <img src="data/media/ano_region.png" width="300"/> 
 
@@ -232,12 +233,15 @@ The Lasso coefficients are as above. Orange blocks represents negative coefficie
 |                  XGBoost                   |                   0.9671                   | 0.04                                     | `Days_Since_Release`; `size_freq`; `Number_of_Sales`         |
 
 
+Lasso is the winner in the model selection part.
+### 这里 1）我觉得model feature的那一栏不需要 2) 还需要说明tree model overfit了
 
 ## Prediction Result
 
-Lasso is the winner in the model selection part.
+According to our prediction model, sneakers of certain styles (i.e. AirJordan 1 and blazer) and of certain colors (i.e.red and tan) are the most investable. Based on this knowledge, we tried to find some undervalued sneakers, which we can invest in now  and sell higher later. We listed some proposed candidates below. 
 
-According to our prediction model, sneakers of certain styles (i.e. AirJordan 1 and blazer) and of certain colors (i.e.red and tan) are the most investable. Based on this knowledge, we tried to find some undervalued sneakers to see if we can invest on them and make a profit. Here are some proposed candidates that were released fairly recently. Air Jordan 1 by Travis Scott: Well, if you are a sneakerhead, you should already know this one is hot. The question is, is there more room for its price to go up, given that current sale price has been as high as almost 5 times the original retail price. The answer is Yes! Based on our model, the price premium should have been 800%, while it is only 500% as of now. So there is an arbitrage opportunity to cop this pair now and sell higher later. The other candidates would follow similarly.
+The first pair listed is Air Jordan 1 by Travis Scott, released in May, 2019. If you are a sneakerhead, you probably already know that this is a popular pair. The question is, given the current resale price, could the price go up even higher. The answer is YES! This pair is selling at 500% markup as of early April, while our model predicts that the markup should have been 800%. As such, there is an arbitrage opportunity here, which would turn into a profit of over $500 on a single pair. The other candidates would follow similarly.
+
 
 |               Sneaker(predicted on 03/26/2020)               | Feature                                                      |                            Image                             |
 | :----------------------------------------------------------: | :----------------------------------------------------------- | :----------------------------------------------------------: |
@@ -247,11 +251,11 @@ According to our prediction model, sneakers of certain styles (i.e. AirJordan 1 
 
 ## Limitation
 
-**1. Brand Generalisation** The data we utilized only cover sales from 2017 to 2019. Due to the changing tendency of the shoe market, this model’s accuracy and predictability for future price premium might be less stable.(added) 
+**1. Time Limitation** The data we utilized only cover sales from 2017 to 2019. Due to the changing tendency of the sneaker resale market, the model’s predictive power might be less stable in far futures.
 
-**2. Timing Data Limitation** More other brands’ data and recent sales data could improve the generalization and future predictability of this model. Furthermore, More features data, such as the material or color purity of shoes, could be used to improve our model.
+**2. Brand Limitation** Since our data only covers two major brands -- Yeezy and Nike Off-White, it might not be appropriate to generalize our predictive model to other brands of sneakers.
 
-## Improvement
+## Further Improvement
 
 1. Time Series consideration, 
 2. DNN Model
