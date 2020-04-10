@@ -225,7 +225,7 @@ To choose the optimal shrinkage parameter, we used cross validation. The optimal
 |                  XGBoost                   |                   0.9671                   | 0.04                                     | `Days_Since_Release`; `size_freq`; `Number_of_Sales`         |
 
 
-According to our modeling results, XGBoost has the highest R2. However, the XGBoost model is considered overfitted given that we have 31 features and less than 100,000 data points. The Lasso and SVM models are comparable in terms of the three models have comparable result.### 这里 1）我觉得model feature的那一栏不需要 2) 还需要说明tree model overfit了
+According to our modeling results, XGBoost has the highest R2. However, the XGBoost model is considered overfitted given that we have 31 features but less than 100,000 data points. The other two models, Lasso and SVM, are comparable in terms of predictive power. Further, the lasso model is more intrepretable as it allows us to easily examine constant effect of a predictor variables on price premiums. As such, taking both predictive power and model interpretability into account, we decided to proceed with the lasso mode. Below is a summary of our fitted lasso model.
 
   ![featureSig](data/media/featureSig.png)
 
