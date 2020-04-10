@@ -47,7 +47,7 @@
   - [Feature Engineering](#feature-engineering)
   - [Model Selection](model-selection)
   - [Result](result)
-* [Prediction Result](prediction_result)
+* [Prediction Result](prediction-result)
 * [Limitation](#limitation)
 * [Improvement](improvement)
 * [Contributer](#contributer)
