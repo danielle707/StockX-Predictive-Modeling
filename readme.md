@@ -160,7 +160,8 @@ In our project, we tried two types of machine learning models, linear and tree-b
 
 - **Linear Model - Lasso**
 
-  We see from the Exploratory Data Analysis step, some brands or some colors (e.x. white) have over emphasizing power. In consideration of outliers and overfitting issues, we utilize Lasso model  to ensure regularization.
+According to our Exploratory Data Analysis, certain styles and colors (i.e. white) have over emphasizing power. In consideration of outliers and overfitting issues, we utilized the Lasso model to ensure regularization.
+
   $$
   \sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{i}\right)^{2} + \lambda \quad \times \sum_{i}^{p}\left|\beta_{j}\right|
   $$
@@ -175,13 +176,11 @@ In our project, we tried two types of machine learning models, linear and tree-b
                      scoring=r2)
   ```
 
-  To choose the optimal penalizing parameter, we used cross validation, and the optimal shrinkage coefficient is $10^{-6}$
+  To choose the optimal shrinkage parameter, we used cross validation. The optimal shrinkage coefficient is $10^{-6}$
 
   ![featureSig](data/media/featureSig.png)
 
-
-
-The coefficients from Lasso are as above. On the left hand side, From the perspective of brand, compared to yeezy, air force, airmac, zoom, and react, Air Jordan indicates an estimated 324% price premium. On the right hand side, from the perspective of color, compared to other color, color blue will reduce/damage the price premium by 253%.Furthermore, as the number of sales increase, the price premium will goes down. This could be explained by the value of scarcity.From this result, we could learn that a brown color shoes has more investing value than a blue shoes. Similarly, reseller should buy Air-Jordan instead of yeezy as early as possible in order to have higher price premium in the future. 
+The Lasso coefficients are as above. Orange blocks represents negative coefficients, and blues represents positive coefficients. In terms of styles, AirJordan is the most lucrative, with an additional price premium of 324%. In terms of colors, red and tan will boost price premium, while blue seems to hurt resale prices. Further, as the number of sales increase, the price premium will go down. This could be explained by the value of scarcity (这句话什么意思啊???）.
 
 - **Linear Model - SVM**
 
@@ -236,9 +235,9 @@ The coefficients from Lasso are as above. On the left hand side, From the perspe
 
 ## Prediction Result
 
-Lasso is the winner in the model selection part
+Lasso is the winner in the model selection part.
 
-According to our prediction model, we already know that sneakers of certain styles, especially Airjordan1 or blazer, and of certain colors, especially red, tan, or orange, are the most investable. Based on this knowledge, we tried to find some undervalued sneakers to see if we can invest on them and make a profit. Here are some proposed candidates that were released fairly recently. Air Jordan 1 by Travis Scott: Well, if you are a sneakerhead, you should already know this one is hot. The question is, is there more room for its price to go up, given that current sale price has been as high as almost 5 times the original retail price. The answer is Yes! Based on our model, the price premium should have been 800%, while it is only 500% as of now. So there is an arbitrage opportunity to cop this pair now and sell higher later. The other candidates would follow similarly.
+According to our prediction model, sneakers of certain styles (i.e. AirJordan 1 and blazer) and of certain colors (i.e.red and tan) are the most investable. Based on this knowledge, we tried to find some undervalued sneakers to see if we can invest on them and make a profit. Here are some proposed candidates that were released fairly recently. Air Jordan 1 by Travis Scott: Well, if you are a sneakerhead, you should already know this one is hot. The question is, is there more room for its price to go up, given that current sale price has been as high as almost 5 times the original retail price. The answer is Yes! Based on our model, the price premium should have been 800%, while it is only 500% as of now. So there is an arbitrage opportunity to cop this pair now and sell higher later. The other candidates would follow similarly.
 
 |               Sneaker(predicted on 03/26/2020)               | Feature                                                      |                            Image                             |
 | :----------------------------------------------------------: | :----------------------------------------------------------- | :----------------------------------------------------------: |
