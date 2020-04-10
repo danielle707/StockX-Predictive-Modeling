@@ -63,19 +63,20 @@ The above is the famous Red Nike Yeezy. Its retail price is $250, and the latest
 We utilized public data offered through the [StockX Data Contest](https://stockx.com/news/the-2019-data-contest/), which consists of 99,956 transactions from 2017 to 2019. The dataset consists of two brands -- Yeezy and Nike Off-White, and over 50 different styles. 
 
 To expand upon the features, we also manually obtained the colorway and number of sales from the StockX website. We then converted style and color into dummy variables, and sneaker size into frequency encoding as common shoe sizes are sold at higher premium. For modeling purposes, our target variable is price premium, which equals price markup over retail price, and our input variables are days since release, style, colorway, size, and number of sales.
-Initial Data Preprosessing:
+
+Table: Initial Data Preprosessing
 
 ![data_source](data/media/data_source.png)
 
 ## Exploratory Data Analysis
 
-Exploring the price premium in our dataset, we found the it's heavily skew to the right, and it condensed in the range(0,3), indicating most sales achieve 4 times transaction price over its original retail one. Notably, there are huge amounts of transactions happen in range beyond 5, heading over 20 times premium. Though some of them are within the reasonable curve, and we would first conduct anomaly detection to discover those anomaly points and found out common features among those outliers.
+Examining the price premium, we observed that it is heavily skewed to the right and condensed in the range (0,3). indicating that most resales achieve 4 times the transaction price over retail price. Notably, there are huge amounts of transactions happen in range beyond 5, heading over 20 times premium. Though some of them are within the reasonable curve, and we would first conduct anomaly detection to discover those points and found out common features among those outliers.
 
 ![targetvalue](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/y_plot.png "Histogram Plot on Y") ![voilinplot](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/volinplot.png "Violin Plot on Y")
 
 ### Anomaly Detection
 
-Since target value is heavily right skewed and positive, taking logrithms would have more robust result in outlier detection.
+Since the target variable is heavily right skewed and positive, taking logrithms would have more robust result in outlier detection.
 
 - **Step 1** Train an isolation forest on target value, using decision rules to find out those outliers.
 
@@ -98,8 +99,6 @@ y['anomaly']=model.predict(y[['Pct_change']])
 | :----: | :---: | :----: | :-----: |
 |  Mean  | 1.25  |  1.03  |  5.40   |
 | Median | 0.70  |  0.68  |  5.00   |
-
-
 
 Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
