@@ -104,7 +104,7 @@ Most anomaly points lie on the right tail of the distribution, and their cut-off
 
 - **Step 3** Explore anomaly points
 
-**Style** The top three styles that saw extreme resale prices are Air Jordan, Presto, and Blazer. Note that these are all nike sneakers. Among the top three, Air Jordan saw the highest price premium of over 2000%. Yeezy sneakers is at the fourth place.
+**Style** The top three styles that saw extreme resale prices are Air Jordan, Presto, and Blazer. Note that these are all Nike sneakers. Among them, Air Jordan saw the highest price premium of over 2000%. Yeezy sneakers followed at the fourth place.
 
 **Color** White is the dominating color feature. There are two hypothesis on why its resale prices are high: 
 
