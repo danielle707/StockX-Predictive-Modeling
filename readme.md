@@ -157,7 +157,7 @@ In our project, we tried two types of machine learning models, linear and tree-b
 
 1. we used the same train-test split and the same seed for cross validation
 2. we used the GridSearchCV package to implement all models
-3. we used r2 as our evaluation metric
+3. we used R2 as our evaluation metric
 
 - **Linear Model - Lasso**
 
@@ -166,6 +166,9 @@ According to our Exploratory Data Analysis, certain styles and colors (i.e. whit
   $$
   \sum_{i=1}^{n}\left(y_{i}-\widehat{y}_{i}\right)^{2} + \lambda \quad \times \sum_{i}^{p}\left|\beta_{j}\right|
   $$
+  
+To choose the optimal shrinkage parameter, we used cross validation. The optimal shrinkage coefficient is $10^{-6}$
+
 
   ```python
   lasso = Lasso()
@@ -176,12 +179,6 @@ According to our Exploratory Data Analysis, certain styles and colors (i.e. whit
                      cv=5,
                      scoring=r2)
   ```
-
-  To choose the optimal shrinkage parameter, we used cross validation. The optimal shrinkage coefficient is $10^{-6}$
-
-  ![featureSig](data/media/featureSig.png)
-
-The Lasso coefficients are as above. Orange blocks represents negative coefficients, and blues represents positive coefficients. In terms of styles, AirJordan is the most lucrative, with an additional price premium of 324%. In terms of colors, red and tan will boost price premium, while blue seems to hurt resale prices. Further, as the number of sales increase, the price premium will go down. This could be explained by the value of scarcity (这句话什么意思啊???）.
 
 - **Linear Model - SVM**
 
@@ -195,8 +192,6 @@ The Lasso coefficients are as above. Orange blocks represents negative coefficie
                      cv=5, 
                      scoring=r2)
   ```
-
-
 
 - **Tree-based - XGBoost**
 
@@ -221,9 +216,6 @@ The Lasso coefficients are as above. Orange blocks represents negative coefficie
   <img src = "data/media/xgboost_tree.png" width = "580"/>
 
 
-
-
-
 #### Model Summary
 
 |                   Model                    |                  r2 score                  | MSE                                      | Features                                                     |
@@ -233,8 +225,11 @@ The Lasso coefficients are as above. Orange blocks represents negative coefficie
 |                  XGBoost                   |                   0.9671                   | 0.04                                     | `Days_Since_Release`; `size_freq`; `Number_of_Sales`         |
 
 
-Lasso is the winner in the model selection part.
-### 这里 1）我觉得model feature的那一栏不需要 2) 还需要说明tree model overfit了
+According to our modeling results, XGBoost has the highest R2. However, the XGBoost model is considered overfitted given that we have 31 features and less than 100,000 data points. The Lasso and SVM models are comparable in terms of the three models have comparable result.### 这里 1）我觉得model feature的那一栏不需要 2) 还需要说明tree model overfit了
+
+  ![featureSig](data/media/featureSig.png)
+
+The Lasso coefficients are as above. Orange blocks represents negative coefficients, and blues represents positive coefficients. In terms of styles, AirJordan is the most lucrative, with an additional price premium of 324%. In terms of colors, red and tan will boost price premium, while blue seems to hurt resale prices. Further, as the number of sales increase, the price premium will go down. This could be explained by the value of scarcity (这句话什么意思啊???）.
 
 ## Prediction Result
 
