@@ -132,15 +132,15 @@ Group anomaly points on their three features: brand, color and region, we could 
 
 ![timeyeezy](data/media/timeyeezy.png)
 
-Statistically, the best time to resell is 3 to 5 weeks before the release date 0. The worst time to resell is the first 9 weeks after release, when the market is saturated. After that, as the availability in market declines, buyers are willing to pay higher premiums. 
+Statistically, the best time to sell in the secondary market is 3 to 5 weeks before the release date. The worst time to sell is the first 9 weeks after release, when the market is saturated. After that, as the availability in market declines, buyers are generally willing to pay higher premiums. 
 
 ### Color Feature
 
-Our dataset consists of two major brands – yeezy and nike off-white. In terms of yeezy, we can see that basic colors including black, white, and grey have constant growth. Bolder colors like orange would start high but decline as time passes. In terms of off-shite, red is the most popular color.
+Our dataset consists of two major brands – yeezy and nike off-white. In terms of yeezy, we could see that basic colors including black, white, and grey have constant growth. Bolder colors like orange would start high but decline as time passes. In terms of off-white, red is the most popular color.
 
 ### Region Feature
 
-Looking at the number of sales, California ranks the first and Oregon ranks the third. However, when we look at the percentage of population that purchases from StockX, Oregon comes to the top with nearly 2 transactions per 1000 people. This means that StockX might want to make more promotions in Oregon, but keep in mind that as a reseller, we cannot control the sales region.
+Looking at the number of sales, California ranks the first and Oregon ranks the third. However, when we look at the percentage of population that purchases from StockX, Oregon comes to the top with nearly 2 transactions per 1000 people. Hence, StockX might want to make more promotions in Oregon, but keep in mind that as a reseller, we cannot control the sales region.
 
 ![edaregion](data/media/edaregion.png)
 
@@ -152,11 +152,11 @@ To recapture the features in our datasets, the target variable is the price prem
 
 ### Model Selection
 
-In our project, we’ve tried 2 types of machine learning models, linear and tree-based regression ones. Due to different implementation and library on these algorithms, we've consolidate our model 
+In our project, we tried two types of machine learning models, linear and tree-based regressions. We carefully accessed the performance of each model using 5-fold cross validation:
 
-1. the same data train-test split and 5-fold validation fold (same random seed)
-2. the same implemtation package GridSearchCV
-3. using r2 as our evaluation metric
+1. we used the same train-test split and the same seed for cross validation
+2. we used the GridSearchCV package to implement all models
+3. we used r2 as our evaluation metric
 
 - **Linear Model - Lasso**
 
