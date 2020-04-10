@@ -70,7 +70,7 @@ Table: Initial Data Preprosessing
 
 ## Exploratory Data Analysis
 
-Examining the price premium, we observed that it is heavily skewed to the right and condensed in the range (0,3). indicating that most resales achieve 4 times the transaction price over retail price. Notably, there are huge amounts of transactions happen in range beyond 5, heading over 20 times premium. Though some of them are within the reasonable curve, and we would first conduct anomaly detection to discover those points and found out common features among those outliers.
+Looking at price premium, we could easily observe that it is heavily skewed to the right. Most resale transactions were marked up between 0% to 300%, yet there are some huge transactions whose markups were over 2000%. As such, we would first conduct anomaly detection to examine those points on the very high end and find common features among them.
 
 ![targetvalue](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/y_plot.png "Histogram Plot on Y") ![voilinplot](https://github.com/danielle707/StockX-Predictive-Modeling/blob/master/data/media/volinplot.png "Violin Plot on Y")
 
