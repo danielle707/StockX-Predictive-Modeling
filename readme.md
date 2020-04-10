@@ -45,11 +45,11 @@
   * [Region Feature](#region-feature)
 * [Modeling](#modeling)
   - [Feature Engineering](#feature-engineering)
-  - [Model Selection](model-selection)
-  - [Result](result)
-* [Prediction Result](prediction-result)
+  - [Model Selection](#model-selection)
+  - [Result](#result)
+* [Prediction Result](#prediction-result)
 * [Limitation](#limitation)
-* [Improvement](improvement)
+* [Improvement](#improvement)
 * [Contributer](#contributer)
 
 ## Motivation
