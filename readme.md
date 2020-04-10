@@ -76,7 +76,7 @@ Looking at price premium, we could easily observe that it is heavily skewed to t
 
 ### Anomaly Detection
 
-Since the target variable is heavily right skewed and positive, taking logrithms would have more robust result in outlier detection.
+Since the target variable is non-negative and heavily right skewed, we would take the logrithm to have more robust results in outlier detection.
 
 - **Step 1** Train an isolation forest on target value, using decision rules to find out those outliers.
 
