@@ -85,8 +85,6 @@ Table: Initial Data Preprosessing
 
 ## Exploratory Data Analysis
 
-Exploring the price premium in our dataset, we found the it's heavily skew to the right, and it condensed in the range(0,3), indicating most sales achieve 4 times transaction price over its original retail one. Notably, there are huge amounts of transactions happen in range beyond 5, heading over 20 times premium. Though some of them are within the reasonable curve, and we would first conduct anomaly detection to discover those anomaly points and found out common features among those points.
-
 Looking at price premium, we could easily observe that it is heavily skewed to the right. Most resale transactions were marked up between 0% to 500%, yet there are some extreme transactions whose markups were over 2000%. As such, we would first conduct anomaly detection to examine those points on the very high end and find common features among them.
 
 ![targetvalue](data/media/y_plot.png "Histogram Plot on Y") ![voilinplot](data/media/volinplot.png "Violin Plot on Y")
@@ -111,7 +109,8 @@ y['anomaly']=model.predict(y[['Pct_change']])
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
 <p align = "right">
-<img src="data/media/anomalycomp.png" align = "right" width = 200/> </p>
+<img src="data/media/anomalycomp.png" align = "right" width = 220/> </p>
+
 
 Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
@@ -184,7 +183,8 @@ In our project, we tried two types of machine learning models, linear and tree-b
 
   According to our Exploratory Data Analysis, certain styles and colors (i.e. white) have over emphasizing power. In consideration of outliers and overfitting issues, we utilized the Lasso model to ensure regularization.
 
-  <img align = "center" src = "data/media/lasso.svg" width = "280"/>
+  <p align = "center">
+  <img src="data/media/lasso.svg" align = "center" width = 280/> </p>
 
 ```python
 lasso = Lasso()
