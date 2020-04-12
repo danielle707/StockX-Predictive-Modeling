@@ -5,24 +5,24 @@
 
 <h4 align="center">Use Machine Learning to learn undervalued sneakers</h4>                                                    
 
-<div style = "text-align: center;">
+<p align = "center">
   <a href = "http://badges.mit-license.org">
-  	<img class = "post image" src = "http://img.shields.io/:license-mit-blue.svg?style=flat-square"/>
+  	<img class = "post image" src = "http://img.shields.io/:license-mit-blue.svg?style=flat-square" align = "center"/>
   </a>
   <a href = "https://github.com/danielle707/">
-  	<img class = "post image" src = "https://img.shields.io/badge/GitHub-🍺-brightgreen"/>
+  	<img class = "post image" src = "https://img.shields.io/badge/GitHub-🍺-brightgreen" align = "center"/>
   </a>
   </a>
   <a href = "https://danielle707.github.io/jekyll/update/2020/04/08/StockX-Predictive-Modeling.html">
-  	<img class = "post image" src = "https://img.shields.io/badge/Blog-🖋-critical"/>
+  	<img class = "post image" src = "https://img.shields.io/badge/Blog-🖋-critical" align = "center"/>
   </a>
   <a href = "https://www.linkedin.com/in/zhidanwang/">
-  	<img class = "post image" src = "https://img.shields.io/badge/Linked-In-informational"/>
+  	<img class = "post image" src = "https://img.shields.io/badge/Linked-In-informational" align = "center"/>
   </a>
   <a href = "https://github.com/danielle707/StockX-Predictive-Modeling/graphs/contributors">
-  	<img class = "post image" src = "https://img.shields.io/github/contributors/danielle707/StockX-Predictive-Modeling"/>
+  	<img class = "post image" src = "https://img.shields.io/github/contributors/danielle707/StockX-Predictive-Modeling" align = "center"/>
   </a>
-</div>
+</p>
 
 ## PRPJECT OVERVIEW
 
@@ -111,7 +111,7 @@ y['anomaly']=model.predict(y[['Pct_change']])
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
 <p align = "right">
-<img src="data/media/anomalycomp.png" align = "right" width = 450/> </p>
+<img src="data/media/anomalycomp.png" align = "right" width = 300/> </p>
 
  
 
