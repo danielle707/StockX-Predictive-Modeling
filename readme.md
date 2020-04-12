@@ -141,13 +141,13 @@ Since the target variable is non-negative and heavily right skewed, we would tak
 
 Statistically, the best time to resell is 3 to 5 weeks before the release date 0. The worst time to resell is the first 9 weeks after release, when the market is saturated. After that, as the availability in market declines, buyers are willing to pay higher premiums. 
 
-<img src="data/media/alltime.png" width="270"/> <img src="data/media/allregion.png" width="280"/> <img src="data/media/allstyle.png" width="350"/> 
+<img src="data/media/alltime.png" width="250"/> <img src="data/media/allregion.png" width="250"/> <img src="data/media/allstyle.png" width="250"/> 
 
 - **Time effect on Top 3 Nike Brands**
 
   The most sale Nike brands are Air Jordan, Presto and Zoom. Among these sneakers, Air Jordan has the highest premium even after long time. The common golden time period to have high price premium. are after day 200. White color has relative competitive premium against others.
 
-  <img src="data/media/timeaj.png" width="300"/> <img src="data/media/timepresto.png" width="300"/> <img src="data/media/timezoom.png" width="300"/> 
+  <img src="data/media/timeaj.png" width="250"/> <img src="data/media/timepresto.png" width="250"/> <img src="data/media/timezoom.png" width="250"/> 
 
 - **Time effect on Yeezy**
 
