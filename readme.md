@@ -111,20 +111,14 @@ y['anomaly']=model.predict(y[['Pct_change']])
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
 <p align = "right">
-<img src="data/media/anomalycomp.png" align = "right" width = 300/> </p>
+<img src="data/media/anomalycomp.png" align = "right" width = 400/> </p>
 
- 
+Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
 | Metric | whole | normal | Anamoly |
 | :----: | :---: | :----: | :-----: |
 |  Mean  | 1.25  |  1.03  |  5.40   |
 | Median | 0.70  |  0.68  |  5.00   |
-
-
-
-
-
-Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
 - **Step 3** Explore anomaly points
 
