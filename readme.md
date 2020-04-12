@@ -41,13 +41,15 @@
 
   *Out-of-Sample Results:*
 
-|                      Sneaker Name                       |                            Image                             | Retail | Most Recent Sale | Current Premium | Predicted Premium |
-| :-----------------------------------------------------: | :----------------------------------------------------------: | :----: | :--------------: | :-------------: | :---------------: |
 | **Air Jordan** 1 Retro High Travis Scott(**Tan/Brown**) | <img src="https://stockx-360.imgix.net/Air-Jordan-1-Retro-High-Travis-Scott/Images/Air-Jordan-1-Retro-High-Travis-Scott/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1550180948" width="200"/> |  $175  |   $797 - $1486   |     497.4%      |    **802.0%**     |
+| :-----------------------------------------------------: | :----------------------------------------------------------: | :----: | :--------------: | :-------------: | :---------------: |
 |      **Blazer** Mid 77 Vintage Slam Jam(**White**)      | <img src="https://stockx-360.imgix.net/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Images/Nike-Blazer-Mid-77-Vintage-Slam-Jam/Lv2/img01.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1554253378" width="200"/> |  $100  |   $470 - $486    |     381.0%      |    **455.5%**     |
 |   **Yeezy** Boost 350 V2 Tail Light(**Grey, Orange**)   | <img src="https://stockx-360.imgix.net/adidas-Yeezy-Boost-350-V2-Tail-Light/Images/adidas-Yeezy-Boost-350-V2-Tail-Light/Lv2/img36.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1584757351" width="200"/> |  $220  |   $289 - $336    |      31.8%      |     **82.0%**     |
+|                      Sneaker Name                       |                            Image                             | Retail | Most Recent Sale | Current Premium | Predicted Premium |
 
 <h6 align="right"><font size="2">*The price data below is based on March 26, 2020</h6> 
+
+<h4 align="center">Be sure to ⭐️ this repo so you can keep up to date on any daily progress!</h4>
 
 ## Table of Contents
 
@@ -108,7 +110,10 @@ y['anomaly']=model.predict(y[['Pct_change']])
 
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
-<img align="left" src="data/media/anomalycomp.png"> 
+<p align = "right">
+<img src="data/media/anomalycomp.png" align = "right" width = 450/> </p>
+
+ 
 
 | Metric | whole | normal | Anamoly |
 | :----: | :---: | :----: | :-----: |
