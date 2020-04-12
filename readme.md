@@ -110,7 +110,7 @@ Since the target variable is non-negative and heavily right skewed, we would tak
 - **Step 2** Create anomaly lists and compare it to non-anomaly points
 
   <p align = "right">
-  <img src="data/media/anomalycomp.png" align = "right" width = 220/> </p>
+  <img src="data/media/anomalycomp.png" align = "right" width = 250/> </p>
 
 
   Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
