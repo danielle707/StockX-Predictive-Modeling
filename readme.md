@@ -5,7 +5,7 @@
 
 <h4 align="center">Use Machine Learning to learn undervalued sneakers</h4>                                                    
 
-​    [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)[<img src = "https://img.shields.io/badge/GitHub-🍺-brightgreen">](https://github.com/danielle707/StockX-Predictive-Modeling)[<img src = "https://img.shields.io/badge/Linked-In-informational">](https://www.linkedin.com/in/zhidanwang/)[<img src = "https://img.shields.io/badge/Blog-🖋-critical">](https://danielle707.github.io/jekyll/update/2020/04/08/StockX-Predictive-Modeling.html) 
+​    [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)[<img src = "https://img.shields.io/badge/GitHub-🍺-brightgreen">](https://github.com/danielle707/StockX-Predictive-Modeling)[<img src = "https://img.shields.io/badge/Linked-In-informational">](https://www.linkedin.com/in/zhidanwang/)[<img src = "https://img.shields.io/badge/Blog-🖋-critical">](https://danielle707.github.io/jekyll/update/2020/04/08/StockX-Predictive-Modeling.html)<img src = "https://img.shields.io/github/contributors/danielle707/StockX-Predictive-Modeling">
 
 ## PRPJECT OVERVIEW
 
@@ -49,7 +49,7 @@
 * [Limitation](#limitation)
 ## Motivation
 
-<img src="https://stockx-360.imgix.net/Nike-Air-Yeezy-2-Red-October/Images/Nike-Air-Yeezy-2-Red-October/Lv2/img19.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1538080256" width = 300/>
+<img src="https://stockx-360.imgix.net/Nike-Air-Yeezy-2-Red-October/Images/Nike-Air-Yeezy-2-Red-October/Lv2/img19.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1538080256" align = "center" width = 250/>
 
 The above is the famous Red Nike Yeezy. Its retail price is $250, and the latest resale price is $6,200, marked up by nearly 2400%. The high resale premium of this pair is not a single event. The once niche market of sneaker resale has grown to become a $2 billion market, and it is projected to reach $6 billion by 2025. Within the sneaker resale market, StockX is one of the largest platforms. The website operates like a stock exchange, where users can place a bidding or asking prices, and a deal is made whenever there’s a match. What is so valuable for us is that the platform offers transparent and actionable data. Using such data, we want to build a predictive model to identify undervalued sneakers, which resellers can invest in now and sell at higher price later.
 
