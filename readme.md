@@ -109,16 +109,6 @@ Most Anomaly points lie on the right tail of distribution, and their cut-off(usi
 
 Group anomaly points on their three features: brand, color and region, we could peek into what features are heavily weighted in our dataset.
 
-**Brand: **Air Jordan contributes highest number of price premium among other brands, the anomaly amount has been more than twice larger than the second highest. The top 3 brands, i.e. Air Jordan, Presto, Blazer are all Nike and following these three are the Yeezy brand.
-
-**Color: **  White color is the dominating color feature. There are two hypothesis on why the number is high: 1. Most sneakers are white; 2. White is indeed a significant feature. 
-
-**Region: ** Other than unnamed states, California and New York has highest state price premium. However, this doesn't mean these two states are have per capita premium. Stay around for further analysis in per capital level.
-
-Most anomaly points lie on the right tail of the distribution, and their cut-off (using median statistics) is approximately exp(5). This indicates that our data becomes noiser at higher price premiums. As such, we would next group these anomly points by brand, by color, and by region to get some further insights of our dataset.
-
-- **Step 3** Explore anomaly points
-
 **Style** The top three styles that saw extreme resale prices are Air Jordan, Presto, and Blazer. Note that these are all Nike sneakers. Among them, Air Jordan saw the highest price premium of over 2000%. Yeezy sneakers followed at the fourth place.
 
 **Color** White is the dominating color feature. There are two hypothesis on why its resale prices are high: 
