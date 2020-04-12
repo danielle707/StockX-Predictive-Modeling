@@ -135,7 +135,7 @@ Since the target variable is non-negative and heavily right skewed, we would tak
 
   **Region** California and New York overall saw the highest price premium. However, this doesn't mean these two states have the highest per capita premium. Stay around for further analysis in per capital level.
 
-  <img src="data/media/ano_brand.png" width="300"/> <img src="data/media/ano_color.png" width="300"/> <img src="data/media/ano_region.png" width="300"/> 
+  <img src="data/media/ano_brand.png" width="250"/> <img src="data/media/ano_color.png" width="250"/> <img src="data/media/ano_region.png" width="250"/> 
 
 ### Time Feature
 
