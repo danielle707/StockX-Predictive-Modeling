@@ -5,7 +5,24 @@
 
 <h4 align="center">Use Machine Learning to learn undervalued sneakers</h4>                                                    
 
-​    [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)![Python Versions](https://img.shields.io/pypi/pyversions/yt2mp3.svg)[<img src = "https://img.shields.io/badge/GitHub-🍺-brightgreen">](https://github.com/danielle707/StockX-Predictive-Modeling)[<img src = "https://img.shields.io/badge/Linked-In-informational">](https://www.linkedin.com/in/zhidanwang/)[<img src = "https://img.shields.io/badge/Blog-🖋-critical">](https://danielle707.github.io/jekyll/update/2020/04/08/StockX-Predictive-Modeling.html)<img src = "https://img.shields.io/github/contributors/danielle707/StockX-Predictive-Modeling">
+<div style = "text-align: center;">
+  <a href = "http://badges.mit-license.org">
+  	<img class = "post image" src = "http://img.shields.io/:license-mit-blue.svg?style=flat-square"/>
+  </a>
+  <a href = "https://github.com/danielle707/">
+  	<img class = "post image" src = "https://img.shields.io/badge/GitHub-🍺-brightgreen"/>
+  </a>
+  </a>
+  <a href = "https://danielle707.github.io/jekyll/update/2020/04/08/StockX-Predictive-Modeling.html">
+  	<img class = "post image" src = "https://img.shields.io/badge/Blog-🖋-critical"/>
+  </a>
+  <a href = "https://www.linkedin.com/in/zhidanwang/">
+  	<img class = "post image" src = "https://img.shields.io/badge/Linked-In-informational"/>
+  </a>
+  <a href = "https://github.com/danielle707/StockX-Predictive-Modeling/graphs/contributors">
+  	<img class = "post image" src = "https://img.shields.io/github/contributors/danielle707/StockX-Predictive-Modeling"/>
+  </a>
+</div>
 
 ## PRPJECT OVERVIEW
 
@@ -49,9 +66,10 @@
 * [Limitation](#limitation)
 ## Motivation
 
-<img src="https://stockx-360.imgix.net/Nike-Air-Yeezy-2-Red-October/Images/Nike-Air-Yeezy-2-Red-October/Lv2/img19.jpg?auto=format,compress&w=559&q=90&dpr=2&updated_at=1538080256" align = "center" width = 250/>
+<p align = "right">
+<img src="https://stockx-360.imgix.net/Nike-Air-Yeezy-2-Red-October/Images/Nike-Air-Yeezy-2-Red-October/Lv2/img19.jpg" align = "right" width = 250/> </p>
 
-The above is the famous Red Nike Yeezy. Its retail price is $250, and the latest resale price is $6,200, marked up by nearly 2400%. The high resale premium of this pair is not a single event. The once niche market of sneaker resale has grown to become a $2 billion market, and it is projected to reach $6 billion by 2025. Within the sneaker resale market, StockX is one of the largest platforms. The website operates like a stock exchange, where users can place a bidding or asking prices, and a deal is made whenever there’s a match. What is so valuable for us is that the platform offers transparent and actionable data. Using such data, we want to build a predictive model to identify undervalued sneakers, which resellers can invest in now and sell at higher price later.
+The right is the famous [Red Nike Yeezy](https://stockx.com/air-yeezy-2-red-october?country=US&currencyCode=USD&size=8&utm_source=google&utm_medium=cpc&utm_campaign=OD-SKUs-Sneakers-New-Desktop(US)&utm_campaignid=1033954941&content=244607812313&keyword=&gclid=EAIaIQobChMImbC-rpjj6AIVDp6fCh1JUA_7EAQYASABEgJHxvD_BwE). Its retail price is $250, and the latest resale price is $6,200, marked up by nearly 2400%. The high resale premium of this pair is not a single event. The once niche market of sneaker resale has grown to become a $2 billion market, and it is projected to reach $6 billion by 2025. Within the sneaker resale market, StockX is one of the largest platforms. The website operates like a stock exchange, where users can place a bidding or asking prices, and a deal is made whenever there’s a match. What is so valuable for us is that the platform offers transparent and actionable data. Using such data, we want to build a predictive model to identify undervalued sneakers, which resellers can invest in now and sell at higher price later.
 
 ## Data Source
 
