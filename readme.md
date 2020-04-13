@@ -64,7 +64,7 @@
 * [Modeling](#modeling)
   - [Feature Engineering](#feature-engineering)
   - [Model Selection](#model-selection)
-  - [Result](#model-summary)
+  - [Model Summary](#model-summary)
 * [Prediction Result](#prediction-result)
 * [Limitation](#limitation)
 ## Motivation
