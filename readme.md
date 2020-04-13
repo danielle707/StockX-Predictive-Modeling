@@ -1,4 +1,4 @@
-<h1 align="center">StockX Price Premium Preditive Analysis
+<h1 align="center">StockX Price Premium Predictive Analysis
 </h1>
 
 ![banner](data/media/banner.png)
