@@ -24,11 +24,11 @@
   </a>
 </p>
 
-## PRPJECT OVERVIEW
 
+## PROPJECT OVERVIEW
 - **ABSTRACT**: This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
 
-- **ASSUMPTION**: Hot sneakers presents little seaonalities, and in this project we will not discuss time series analysis.
+- **ASSUMPTION**: Hot sneakers present little seasonalities, and in this project we will not discuss time series analysis.
 
 - **DATA**: [StockX Data Challenge 2019](https://s3.amazonaws.com/stockx-sneaker-analysis/wp-content/uploads/2019/02/StockX-Data-Contest-2019-3.xlsx); Demographic Data 2020
 - **MODEL**: Tree-based and Linear Regression
@@ -80,7 +80,7 @@ We utilized public data offered through the [StockX Data Contest](https://stockx
 
 To expand upon the features, we also manually obtained the colorway and number of sales from the StockX website. We then converted style and color into dummy variables, and sneaker size into frequency encoding as common shoe sizes are sold at higher premium. For modeling purposes, our target variable is price premium, which equals price markup over retail price, and our input variables are days since release, style, colorway, size, and number of sales.
 
-Table: Initial Data Preprosessing
+Table: Initial Data Preprocessing
 
 ![data_source](data/media/data_source.png)
 
@@ -92,7 +92,7 @@ Looking at price premium, we could easily observe that it is heavily skewed to t
 
 ### Anomaly Detection
 
-Since the target variable is non-negative and heavily right skewed, we would take the logrithm to have more robust results in outlier detection.
+Since the target variable is non-negative and heavily right skewed, we would take the logarithm to have more robust results in outlier detection.
 
 - **Step 1** Train an isolation forest on target value and use decision rules to find outliers.
 
@@ -113,7 +113,7 @@ Since the target variable is non-negative and heavily right skewed, we would tak
   <img src="data/media/anomalycomp.png" align = "right" width = 250/> </p>
 
 
-  Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a cruicial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
+  Most Anomaly points lie on the right tail of distribution, and their cut-off(using median statistics) is approximately exp(5), this is a crucial indicator that if our prediction is beyond 100 times premium, there is large probability the point is an outlier and some statistically important features are underneath the pair of shoe. 
 
   | Metric | whole | normal | Anamoly |
   | :----: | :---: | :----: | :-----: |
@@ -159,7 +159,7 @@ Statistically, the best time to resell is 3 to 5 weeks before the release date 0
   
 ### Color Feature
 
-Our dataset consists of two major brands – yeezy and nike off-white. In terms of yeezy, we could see that basic colors including black, white, and grey have constant growth. Bolder colors like orange would start high but decline as time passes. In terms of off-white, red is the most popular color.
+Our dataset consists of two major brands – Yeezy and Nike off-white. In terms of yeezy, we could see that basic colors including black, white, and grey have constant growth. Bolder colors like orange would start high but decline as time passes. In terms of off-white, red is the most popular color.
 
 ### Region Feature
 
@@ -236,7 +236,7 @@ In our project, we tried two types of machine learning models, linear and tree-b
   
   <img src = "data/media/xgboost_tree.png" width = "580"/>
 
-  Though we have limited `max_depth` and `min_child_weight` , the optimal parameters are 4 and 5, gettting up combination more than the number of variables. Therefore the model is prone for overfitting in this case.
+  Though we have limited `max_depth` and `min_child_weight` , the optimal parameters are 4 and 5, getting up combination more than the number of variables. Therefore the model is prone for overfitting in this case.
 
 #### Model Summary
 
@@ -246,7 +246,7 @@ In our project, we tried two types of machine learning models, linear and tree-b
 |                    SVM                     |                   0.75                   | 0.39                                     | Memory efficient, fast, accurate in high dimensions          | Overfitting      |
 |                  XGBoost                   |                   0.96                   | 0.04                                     | High `r_square`, clear tree structure                        | Overfitting      |
 
-According to our modeling results, XGBoost has the highest R2. However, the XGBoost model is considered overfitted. The other two models, Lasso and SVM, are comparable in terms of predictive power. Further, the lasso model is more intrepretable as it allows us to easily examine constant effect of a predictor variables on price premiums. As such, taking both predictive power and model interpretability into account, we decided to proceed with the lasso model. Below is a summary of our fitted lasso model.
+According to our modeling results, XGBoost has the highest R2. However, the XGBoost model is considered overfitted. The other two models, Lasso and SVM, are comparable in terms of predictive power. Further, the lasso model is more interpretable as it allows us to easily examine constant effect of a predictor variable on price premiums. As such, taking both predictive power and model interpretability into account, we decided to proceed with the lasso model. Below is a summary of our fitted lasso model.
 
 ## Prediction Result
 
