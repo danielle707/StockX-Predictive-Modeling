@@ -24,7 +24,7 @@
   </a>
 </p>
 
-## PRPJECT OVERVIEW
+## PROJECT OVERVIEW
 
 - **ABSTRACT**: This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
 
