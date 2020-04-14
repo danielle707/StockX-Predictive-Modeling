@@ -24,12 +24,8 @@
   </a>
 </p>
 
-<<<<<<< HEAD
-## PROJECT OVERVIEW
-=======
->>>>>>> cc7271d8041f9c0a8d2c1ac7315340f53e6fdb8d
 
-## PROPJECT OVERVIEW
+## PROJECT OVERVIEW
 - **ABSTRACT**: This project aims to investigate the features behind resale premiums on [StockX](https://stockx.com/sneakers) and their prediction power by conduct feature engineering and utilize external popularity index on different brands
 
 - **ASSUMPTION**: Hot sneakers present little seasonalities, and in this project we will not discuss time series analysis.
